@@ -1,6 +1,7 @@
 <template>
   <img alt="Vue logo" src="./assets/logo.png">
-  <Counter />
+  <Counter title="entraron" />
+  <Counter title="salieron" />
 </template>
 
 <script lang="ts">
