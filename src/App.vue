@@ -1,16 +1,17 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <Counter title="entraron" />
-  <Counter title="salieron" />
+  <!-- <Counter title="entraron" /> -->
+   <Indesicion />
 </template>
 
 <script lang="ts">
 import { Options, Vue } from 'vue-class-component';
 import Counter from './components/Counter.vue';
+import Indesicion from './components/Indesicion.vue';
 
 @Options({
   components: {
-    Counter
+    Counter,
+    Indesicion
   },
 })
 export default class App extends Vue {}
