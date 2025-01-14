@@ -1,13 +1,13 @@
 <template>
-  <img src="https://via.placeholder.com/250" alt="bg">
+  <img :src="img" v-if="img !== ''" alt="bg">
   <div class="bg-dark"></div>
   <div class="indecision-container">
     <input v-model="question" type="text" placeholder="Hazme una pregunta">
     <p>Recuerda terminar con un signo de interrogación (?)</p>
 
-    <div>
+    <div v-if="isValidQuestion">
         <h2>{{ question }}</h2>
-        <h1>Si, no, pensando...</h1>
+        <h1>{{ answer === 'yes' ? 'Si' : 'No' }}</h1>
     </div>
   </div>
 </template>
@@ -17,16 +17,35 @@ export default {
     name: 'Indecision',
     data () {
         return {
-            question: ''
+            question: '',
+            answer: '',
+            img: '',
+            isValidQuestion: false
         }
     },
     watch: {
         question (value: string, oldValue: string): void {
+            this.isValidQuestion = false;
             console.log(value)
             console.log(oldValue)
 
             if (value.includes('?')) {
-                // this.getAnswer()
+            this.isValidQuestion = true;
+                this.getAnswer()
+            }
+        }
+    },
+    methods: {
+       async getAnswer (): Promise<void> {
+            this.answer = 'Pensando...';
+
+            try {
+                const response: Response = await fetch('https://yesno.wtf/api');
+                const { answer, image } = await response.json();
+                this.img = image;
+                this.answer = answer;
+            } catch (error: unknown) {
+                this.answer = 'No se pudo cargar del API';
             }
         }
     }
