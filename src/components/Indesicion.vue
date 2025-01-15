@@ -13,43 +13,45 @@
 </template>
 
 <script lang="ts">
-export default {
+import { defineComponent } from 'vue';
+
+export default defineComponent({
     name: 'Indecision',
-    data () {
+    data() {
         return {
             question: '',
             answer: '',
             img: '',
-            isValidQuestion: false
-        }
+            isValidQuestion: false as boolean
+        };
     },
     watch: {
-        question (value: string, oldValue: string): void {
-            this.isValidQuestion = false;
-            console.log(value)
-            console.log(oldValue)
+        question(value: string, oldValue: string): void {
+            (this as any).isValidQuestion = false;
+            console.log(value);
+            console.log(oldValue);
 
             if (value.includes('?')) {
-            this.isValidQuestion = true;
-                this.getAnswer()
+                (this as any).isValidQuestion = true;
+                this.getAnswer();
             }
         }
     },
     methods: {
-       async getAnswer (): Promise<void> {
-            this.answer = 'Pensando...';
+        async getAnswer(): Promise<void> {
+            (this as any).answer = 'Pensando...';
 
             try {
                 const response: Response = await fetch('https://yesno.wtf/api');
                 const { answer, image } = await response.json();
-                this.img = image;
-                this.answer = answer;
+                (this as any).img = image;
+                (this as any).answer = answer
             } catch (error: unknown) {
-                this.answer = 'No se pudo cargar del API';
+                (this as any).answer = 'No se pudo cargar del API';
             }
         }
     }
-}
+});
 </script>
 
 <style scoped>
