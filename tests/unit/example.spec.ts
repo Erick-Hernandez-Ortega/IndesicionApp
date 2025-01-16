@@ -1,12 +1,14 @@
-import { shallowMount } from '@vue/test-utils'
-import HelloWorld from '@/components/HelloWorld.vue'
+// ? Nombre a decirle al test suit y normalmente es el nombre del componente a probar
+describe('Example component', () => {
+  // ! test (o it) define una prueba específica que verifica una funcionalidad concreta.
+  // ! Cada test debe centrarse en un caso de uso o escenario.
+  test("Debe ser mayor a 10", () => {
+    // Arreglar
+    let value: number = 11;
 
-describe('HelloWorld.vue', () => {
-  it('renders props.msg when passed', () => {
-    const msg = 'new message'
-    const wrapper = shallowMount(HelloWorld, {
-      props: { msg }
-    })
-    expect(wrapper.text()).toMatch(msg)
+    // Estimulo
+    value += 2;
+    // Observar
+    expect(value).toBeGreaterThan(10);
   })
 })
