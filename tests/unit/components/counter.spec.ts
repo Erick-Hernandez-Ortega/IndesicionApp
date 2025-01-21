@@ -33,4 +33,10 @@ describe('Counter view', () => {
         await decreaseBTN.trigger('click');
         expect(value.text()).toBe('0');
     })
+
+    test('debe de establecer el valor por defecto que es Counter', async () => {
+        const valueStart: string = wrapper.props('title')
+
+        expect(valueStart).toBe('Counter');
+    })
  })
