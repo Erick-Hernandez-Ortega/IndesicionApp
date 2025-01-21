@@ -1,6 +1,7 @@
 <template>
     <h2>Counter {{ title }}</h2>
     <p>{{ count }} <sup>2</sup> = {{ squareValue }}</p>
+    <p id="counter-value">{{ count }}</p>
 
     <div>
         <button type="button" @click="count++">+1</button>
