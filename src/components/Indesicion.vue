@@ -28,8 +28,7 @@ export default defineComponent({
     watch: {
         question(value: string, oldValue: string): void {
             (this as any).isValidQuestion = false;
-            console.log(value);
-            console.log(oldValue);
+            console.log({value});
 
             if (value.includes('?')) {
                 (this as any).isValidQuestion = true;
